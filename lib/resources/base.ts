@@ -1,6 +1,6 @@
 import { join } from "path";
 
-import { BASE_URL, CACHE_AGE, CACHE_DIR, FEED_ICON, NOW, OUTPUT } from "../constants.ts";
+import { BASE_URL, CACHE_AGE, CACHE_DIR, FEED_ICON, HOME_PAGE, NOW, OUTPUT } from "../constants.ts";
 import { Article, Cache, Query, Service } from "../types.ts";
 import { ignoredDomainPatterns } from "../data/domains.ts";
 import { formatUrl, request, sanitizeUrl } from "../utils/mod.ts";
@@ -87,7 +87,7 @@ export abstract class Base<T extends Service> {
     const jsonfeed = {
       version: "https://jsonfeed.org/version/1.1",
       title: `@iurare/${this.name}`,
-      home_page_url: BASE_URL,
+      home_page_url: HOME_PAGE,
       feed_url: `${BASE_URL}/${this.fname}`,
       icon: FEED_ICON,
       items,

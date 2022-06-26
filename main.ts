@@ -1,5 +1,5 @@
 import { Reddit, RSS, Twitter } from "./lib/resources/mod.ts";
-import { init } from "./lib/utils/mod.ts"
+import { init } from "./lib/utils/mod.ts";
 
 await init();
 try {
