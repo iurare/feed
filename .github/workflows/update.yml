@@ -1,0 +1,28 @@
+name: Upate
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.23.0
+      
+      - name: Update
+        run: deno task start --twitter-access-token="${{ secrets.TWITTER_ACCESS_TOKEN}}" --twitter-user-list="${{ secrets.TWITTER_USER_LIST}}" --rss-list="${{ secrets.RSS_LIST}}" main.ts
+        
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
