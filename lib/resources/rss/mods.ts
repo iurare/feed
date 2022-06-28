@@ -123,13 +123,14 @@ export class RSS extends Base<Name> {
       }, "").trim();
     }
 
-    return `\
-<blockquote>
-<p>${header} <strong>${title}</strong></p>
-<p>${author !== "" ? `by ${author}` : ""} ${categories !== "" ? `${categories}` : ""}</p>
-${html}
-${permalink}
-</blockquote>
-`.replaceAll("\n", "");
+    const rv = `\
+      <blockquote>
+        <p>${header} <strong>${title}</strong></p>
+        <p>${author !== "" ? `by ${author}` : ""} ${categories !== "" ? `${categories}` : ""}</p>
+        ${html}
+        ${permalink}
+      </blockquote>
+      `;
+    return this._prettyHtml(rv);
   }
 }

@@ -293,16 +293,17 @@ export class Twitter extends Base<Name> {
       html?: string;
     },
   ): string {
-    return `\
-<blockquote>
-<p>${permalink} ${text}</p>
-${title ? `<p><strong>${title}</strong></p>` : ""}
-${imageUrl ? `<p>${imageUrl}</p>` : ""}
-${description ? `<p><i>${description}</i></p>` : ""}
-${link ? `${link}` : ""}
-${html ? `${html}` : ""}
-</blockquote>
-`.replaceAll("\n", "").trim();
+    const rv = `\
+      <blockquote>
+        <p>${permalink} ${text}</p>
+        ${title ? `<p><strong>${title}</strong></p>` : ""}
+        ${imageUrl ? `<p>${imageUrl}</p>` : ""}
+        ${description ? `<p><i>${description}</i></p>` : ""}
+        ${link ? `${link}` : ""}
+        ${html ? `${html}` : ""}
+      </blockquote>
+      `;
+    return this._prettyHtml(rv);
   }
 
   _generateImageHtml(url: string, height: number, width: number): string {

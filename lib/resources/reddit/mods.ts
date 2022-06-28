@@ -128,15 +128,16 @@ export class Reddit extends Base<Name> {
     const scoreHtml = `<p>Score: ${score}</p>`;
     const commentCountHtml = `<p>Comments: ${num_comments}</p>`;
 
-    return `\
-<blockquote>
-${title}
-${link}
-${scoreHtml}
-${permalink}
-${commentCountHtml}
-</blockquote>
-`.replaceAll("\n", "");
+    const rv = `\
+      <blockquote>
+        ${title}
+        ${link}
+        ${scoreHtml}
+        ${permalink}
+        ${commentCountHtml}
+      </blockquote>
+      `;
+    return this._prettyHtml(rv);
   }
 
   _generatePermalink(url: string): string {

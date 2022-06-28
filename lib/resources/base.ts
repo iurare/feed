@@ -79,6 +79,10 @@ export abstract class Base<T extends Service> {
       .reverse();
   }
 
+  _prettyHtml(html: string): string {
+    return html.split(/\s/).filter(Boolean).join(" ").trim();
+  }
+
   async _updateCaches(cache: Cache<T>): Promise<void> {
     await Deno.writeTextFile(this.cachedPath, JSON.stringify(cache));
   }
