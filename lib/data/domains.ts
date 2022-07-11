@@ -19,6 +19,7 @@ export const ignoredServices = [
   "reddit",
   "togetter",
   "twitter",
+  "yahoo",
   "ycombinator",
   "youtube",
 ];
@@ -36,9 +37,16 @@ export const allowedShortUrlPatterns = allowedShortUrl
   .map((url) => new RegExp(`^https?:\\/\\/(?:[a-z0-9-]+\\.)*?${url}`));
 
 const ignoredServicesPatterns = ignoredServices
-  .map((service) => new RegExp(`^https?:\\/\\/(?:[a-z0-9-]+\\.)*?${service}(?:\\.[a-z]{2,}){1,}`));
+  .map((service) =>
+    new RegExp(
+      `^https?:\\/\\/(?:[a-z0-9-]+\\.)*?${service}(?:\\.[a-z]{2,}){1,}`,
+    )
+  );
 const ignoredShortUrlPatterns = ignoredShortUrl
   .map(escapeRegExp)
   .map((url) => new RegExp(`^https?:\\/\\/(?:[a-z0-9-]+\\.)*?${url}`));
 
-export const ignoredDomainPatterns = [...ignoredServicesPatterns, ...ignoredShortUrlPatterns];
+export const ignoredDomainPatterns = [
+  ...ignoredServicesPatterns,
+  ...ignoredShortUrlPatterns,
+];
