@@ -65,8 +65,7 @@ export abstract class Base<T extends Service> {
       .filter(Boolean)
       .filter((item) => {
         const { url } = item;
-        return new RegExp("^https:\\/\\/").test(url) && /** allow only https **/
-          !ignoredDomainPatterns.some((pattern) => pattern.test(url));
+        return !ignoredDomainPatterns.some((pattern) => pattern.test(url));
       })
       .reduce((prev, curr) => {
         if (!ids.includes(curr.id)) {
